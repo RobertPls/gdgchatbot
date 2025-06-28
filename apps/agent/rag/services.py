@@ -63,7 +63,9 @@ class RAGService:
         Pregunta: {question}
         
         Si la pregunta no puede ser respondida con el contexto, di amablemente que no tienes información actualizada.
-        Respuesta:"""
+        Recuerda ser capas de interpretar la pregunta correctamente y de paso dar un poco de historia en un parrafo 
+        mediano sobre el area de la respuesta a manera de eriquecimiento cultural, 
+        recuerda dar la respuesta en texto plano, Respuesta:"""
         
         prompt = ChatPromptTemplate.from_template(template)
         

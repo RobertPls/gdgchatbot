@@ -28,13 +28,11 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 JSON_API_ENDPOINTS = [
     {
-        "name": "pokeapi",
-        "url": "https://pokeapi.co/api/v2/ability/",
+        "name": "eventos",
+        "url": "https://neurocoders-exkkuejiia-uc.a.run.app/eventos",
         "method": "GET",
-        "params": {
-            "limit": 1000 
-        },
-        "content_fields": ["results"],
+        "params": {},
+        "content_fields": [],
         "refresh_interval": 3600 
     }
 ]
