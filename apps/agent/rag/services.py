@@ -22,10 +22,14 @@ CHUNK_OVERLAP = getattr(settings, 'CHUNK_OVERLAP', 200)
 class RAGService:
     def __init__(self, provider="gemini"):
         self.llm_service = LLMService(provider)
-        self.embedding_model = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
+        self.embedding_model = HuggingFaceEmbeddings(
+            model_name=EMBEDDING_MODEL,
+            model_kwargs={'device': 'cpu'},  # Si tienes GPU usa 'cuda'
+            encode_kwargs={'batch_size': 64}  # Procesamiento en paralelo
+        )
         self.text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=CHUNK_SIZE,
-            chunk_overlap=CHUNK_OVERLAP
+            chunk_size=1500,  # Aumenta tamaño para menos chunks
+            chunk_overlap=100  # Reduce overlap
         )
     
     def query(self, question: str):
@@ -62,11 +66,23 @@ class RAGService:
         
         Pregunta: {question}
         
-        Si la pregunta no puede ser respondida con el contexto, di amablemente que no tienes información actualizada.
-        Recuerda ser capas de interpretar la pregunta correctamente y de paso dar un poco de historia en un parrafo 
-        mediano sobre el area de la respuesta a manera de eriquecimiento cultural, 
-        recuerda dar la respuesta en texto plano, Respuesta:"""
-        
+        Si la información específica solicitada no se encuentra en el contexto proporcionado, reconócelo honestamente pero ofrece valor adicional de esta manera:
+
+        "Aunque no encuentro información específica sobre [tema consultado] en los datos disponibles, puedo compartir contigo algunos aspectos generales e históricos relevantes sobre este tema."
+
+        Luego proporciona:
+        - CONTEXTO GENERAL: Un párrafo informativo sobre el tema basado en conocimiento general
+        - PERSPECTIVA HISTÓRICA: Antecedentes históricos o evolución del tema consultado
+        - ORIENTACIÓN ÚTIL: Sugiere dónde o cómo el usuario podría obtener información más específica si es relevante
+
+        Si SÍ encuentras información en el contexto:
+        - RESPUESTA DETALLADA: Incluye todos los datos relevantes sin omitir detalles importantes
+        - ENRIQUECIMIENTO CULTURAL: Añade contexto histórico que complemente la información encontrada
+
+        Mantén un tono conversacional, educativo y útil. Responde en texto plano con claridad.
+
+        Respuesta:"""
+                
         prompt = ChatPromptTemplate.from_template(template)
         
         # Construir cadena de procesamiento usando el método del LLMService
