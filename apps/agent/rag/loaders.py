@@ -1,4 +1,3 @@
-# data_loader.py - Actualizado para trabajar con APIs JSON
 import json
 import requests
 from langchain_community.document_loaders import PyPDFLoader
