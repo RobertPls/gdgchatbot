@@ -1,0 +1,77 @@
+# Bytecode de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos temporales de entorno virtual
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Archivos de configuración local
+*.env
+*.local
+*.sqlite3
+*.log
+
+# Configuración de PyCharm/VSCode/IDEs
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación y cache
+*.bak
+*.swp
+*.tmp
+*.orig
+
+# Archivos estáticos y media
+/staticfiles/
+/media/
+/static_root/
+/media_root/
+
+# Archivos de migraciones generados (puedes mantenerlos si deseas trackearlos)
+**/migrations/__pycache__/
+**/migrations/*.pyc
+
+# Base de datos temporal
+db.sqlite3
+
+# Archivos de coverage/test
+htmlcov/
+.coverage
+.tox/
+.nox/
+.coverage.*
+.cache
+.pytest_cache/
+
+# Archivos de documentación generados
+_build/
+
+# Archivos generados por Docker
+*.pid
+
+# Archivos de despliegue
+*.tar.gz
+*.egg-info/
+dist/
+build/
+
+# Archivos de paquetes
+*.whl
+*.egg
+.eggs/
+
+# lock files (si no los usas directamente)
+Pipfile.lock
+poetry.lock

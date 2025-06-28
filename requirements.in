@@ -1,0 +1,42 @@
+# Frameworks principales
+Django
+djangorestframework
+langchain
+langchain-anthropic
+langchain-openai
+langchain-google-genai
+sentence-transformers
+openai
+anthropic
+
+# Google y compatibilidad
+google-ai-generativelanguage
+google-api-core
+googleapis-common-protos
+proto-plus
+grpcio
+grpcio-status
+protobuf>=6.30.0,<7.0.0
+
+# Utilidades comunes
+requests
+httpx
+httpx-sse
+python-dotenv
+uvicorn
+fastapi
+sqlparse
+SQLAlchemy
+scikit-learn
+torch
+transformers
+tqdm
+pydantic
+pydantic-settings
+
+# Otros utilitarios
+chromadb
+orjson
+Jinja2
+rich
+tenacity
