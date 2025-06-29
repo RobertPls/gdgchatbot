@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-vj+w8$k&s3x%#0!c4eo03c4v-&d)b(ku1oqc36x_ryne^cmk-*
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
+CORS_ALLOW_ALL_ORIGINS = True
 ALLOWED_HOSTS = ['*']
 JSON_API_ENDPOINTS = [
     {
@@ -60,10 +60,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.agent'
+    'apps.agent',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
