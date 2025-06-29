@@ -15,8 +15,17 @@ PERSIST_DIR = os.path.join(settings.BASE_DIR, "chroma_db")
 
 def get_vector_store(collection_name: str = "default"):
     """Obtener o crear el vector store con una colección específica"""
-    embedding = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
-    
+    embedding = HuggingFaceEmbeddings(
+            model_name=EMBEDDING_MODEL,
+            model_kwargs={'device': 'cpu'},  
+            encode_kwargs={
+                'batch_size': 128,
+                'normalize_embeddings': True
+            }
+        )
+        
+    # Fuerza la carga del modelo
+    embedding.embed_query("init")    
     if os.path.exists(PERSIST_DIR):
         return Chroma(
             persist_directory=PERSIST_DIR,
