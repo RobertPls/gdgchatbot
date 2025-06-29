@@ -66,7 +66,7 @@ class IngestDataView(APIView):
 class ChatAPIView(APIView):
     def post(self, request):
         prompt = request.data.get('prompt')
-        use_rag = request.data.get('use_rag', False)
+        use_rag = request.data.get('use_rag', True)
         
         if not prompt:
             return Response({"error": "Prompt is required"}, status=status.HTTP_400_BAD_REQUEST)
